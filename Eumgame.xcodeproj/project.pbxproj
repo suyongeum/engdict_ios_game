@@ -1,0 +1,704 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		47869AE923D6F857DAD5B678 /* Pods_Eumgame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95EF741F36AF51C119DE4599 /* Pods_Eumgame.framework */; };
+		BF7C7B201FA1852400B2A303 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7C7B1F1FA1852400B2A303 /* AppDelegate.swift */; };
+		BF7C7B261FA1852500B2A303 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7C7B251FA1852500B2A303 /* GameScene.swift */; };
+		BF7C7B281FA1852500B2A303 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7C7B271FA1852500B2A303 /* GameViewController.swift */; };
+		BF7C7B2B1FA1852500B2A303 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF7C7B291FA1852500B2A303 /* Main.storyboard */; };
+		BF7C7B2D1FA1852500B2A303 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF7C7B2C1FA1852500B2A303 /* Assets.xcassets */; };
+		BF7C7B301FA1852500B2A303 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF7C7B2E1FA1852500B2A303 /* LaunchScreen.storyboard */; };
+		BF7C7B3B1FA1852600B2A303 /* EumgameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7C7B3A1FA1852600B2A303 /* EumgameTests.swift */; };
+		BF7C7B461FA1852600B2A303 /* EumgameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7C7B451FA1852600B2A303 /* EumgameUITests.swift */; };
+		BFBB6FDB1FA440FC003A9FB3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB6FDA1FA440FC003A9FB3 /* Constants.swift */; };
+		BFBB6FDF1FA4449F003A9FB3 /* AppServerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB6FDE1FA4449F003A9FB3 /* AppServerClient.swift */; };
+		BFBB6FE31FA44AAC003A9FB3 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB6FE21FA44AAC003A9FB3 /* GameViewModel.swift */; };
+		BFBB6FE51FA44C0D003A9FB3 /* WordBallSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB6FE41FA44C0D003A9FB3 /* WordBallSprite.swift */; };
+		BFBB6FE71FA44C1B003A9FB3 /* UserBallSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB6FE61FA44C1B003A9FB3 /* UserBallSprite.swift */; };
+		BFBB6FE91FA47AA8003A9FB3 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB6FE81FA47AA8003A9FB3 /* Configuration.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BF7C7B371FA1852600B2A303 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF7C7B141FA1852400B2A303 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BF7C7B1B1FA1852400B2A303;
+			remoteInfo = Eumgame;
+		};
+		BF7C7B421FA1852600B2A303 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF7C7B141FA1852400B2A303 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BF7C7B1B1FA1852400B2A303;
+			remoteInfo = Eumgame;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		95EF741F36AF51C119DE4599 /* Pods_Eumgame.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eumgame.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF7C7B1C1FA1852400B2A303 /* Eumgame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eumgame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF7C7B1F1FA1852400B2A303 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BF7C7B251FA1852500B2A303 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		BF7C7B271FA1852500B2A303 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		BF7C7B2A1FA1852500B2A303 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BF7C7B2C1FA1852500B2A303 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BF7C7B2F1FA1852500B2A303 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BF7C7B311FA1852500B2A303 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF7C7B361FA1852600B2A303 /* EumgameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EumgameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF7C7B3A1FA1852600B2A303 /* EumgameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EumgameTests.swift; sourceTree = "<group>"; };
+		BF7C7B3C1FA1852600B2A303 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF7C7B411FA1852600B2A303 /* EumgameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EumgameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF7C7B451FA1852600B2A303 /* EumgameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EumgameUITests.swift; sourceTree = "<group>"; };
+		BF7C7B471FA1852600B2A303 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFBB6FDA1FA440FC003A9FB3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BFBB6FDE1FA4449F003A9FB3 /* AppServerClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppServerClient.swift; sourceTree = "<group>"; };
+		BFBB6FE21FA44AAC003A9FB3 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		BFBB6FE41FA44C0D003A9FB3 /* WordBallSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordBallSprite.swift; sourceTree = "<group>"; };
+		BFBB6FE61FA44C1B003A9FB3 /* UserBallSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBallSprite.swift; sourceTree = "<group>"; };
+		BFBB6FE81FA47AA8003A9FB3 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		E912096FC77A0A58F0C5B2DE /* Pods-Eumgame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eumgame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eumgame/Pods-Eumgame.debug.xcconfig"; sourceTree = "<group>"; };
+		FA818CA49660726B07AB4566 /* Pods-Eumgame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eumgame.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eumgame/Pods-Eumgame.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BF7C7B191FA1852400B2A303 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47869AE923D6F857DAD5B678 /* Pods_Eumgame.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF7C7B331FA1852600B2A303 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF7C7B3E1FA1852600B2A303 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0F10C57DCAA9FD7C29B9CBFD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				95EF741F36AF51C119DE4599 /* Pods_Eumgame.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		92982B742D94764FC53518CA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E912096FC77A0A58F0C5B2DE /* Pods-Eumgame.debug.xcconfig */,
+				FA818CA49660726B07AB4566 /* Pods-Eumgame.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		BF7C7B131FA1852400B2A303 = {
+			isa = PBXGroup;
+			children = (
+				BF7C7B1E1FA1852400B2A303 /* Eumgame */,
+				BF7C7B391FA1852600B2A303 /* EumgameTests */,
+				BF7C7B441FA1852600B2A303 /* EumgameUITests */,
+				BF7C7B1D1FA1852400B2A303 /* Products */,
+				92982B742D94764FC53518CA /* Pods */,
+				0F10C57DCAA9FD7C29B9CBFD /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		BF7C7B1D1FA1852400B2A303 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BF7C7B1C1FA1852400B2A303 /* Eumgame.app */,
+				BF7C7B361FA1852600B2A303 /* EumgameTests.xctest */,
+				BF7C7B411FA1852600B2A303 /* EumgameUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BF7C7B1E1FA1852400B2A303 /* Eumgame */ = {
+			isa = PBXGroup;
+			children = (
+				BF7C7B1F1FA1852400B2A303 /* AppDelegate.swift */,
+				BFBB6FE01FA44A69003A9FB3 /* View */,
+				BFBB6FE11FA44A86003A9FB3 /* ViewModel */,
+				BFBB6FDC1FA44102003A9FB3 /* Model */,
+				BFBB6FDD1FA44457003A9FB3 /* Service */,
+				BF7C7B291FA1852500B2A303 /* Main.storyboard */,
+				BF7C7B2C1FA1852500B2A303 /* Assets.xcassets */,
+				BF7C7B2E1FA1852500B2A303 /* LaunchScreen.storyboard */,
+				BF7C7B311FA1852500B2A303 /* Info.plist */,
+			);
+			path = Eumgame;
+			sourceTree = "<group>";
+		};
+		BF7C7B391FA1852600B2A303 /* EumgameTests */ = {
+			isa = PBXGroup;
+			children = (
+				BF7C7B3A1FA1852600B2A303 /* EumgameTests.swift */,
+				BF7C7B3C1FA1852600B2A303 /* Info.plist */,
+			);
+			path = EumgameTests;
+			sourceTree = "<group>";
+		};
+		BF7C7B441FA1852600B2A303 /* EumgameUITests */ = {
+			isa = PBXGroup;
+			children = (
+				BF7C7B451FA1852600B2A303 /* EumgameUITests.swift */,
+				BF7C7B471FA1852600B2A303 /* Info.plist */,
+			);
+			path = EumgameUITests;
+			sourceTree = "<group>";
+		};
+		BFBB6FD91FA44089003A9FB3 /* Sprites */ = {
+			isa = PBXGroup;
+			children = (
+				BFBB6FE41FA44C0D003A9FB3 /* WordBallSprite.swift */,
+				BFBB6FE61FA44C1B003A9FB3 /* UserBallSprite.swift */,
+			);
+			path = Sprites;
+			sourceTree = "<group>";
+		};
+		BFBB6FDC1FA44102003A9FB3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BFBB6FDA1FA440FC003A9FB3 /* Constants.swift */,
+				BFBB6FE81FA47AA8003A9FB3 /* Configuration.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BFBB6FDD1FA44457003A9FB3 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				BFBB6FDE1FA4449F003A9FB3 /* AppServerClient.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		BFBB6FE01FA44A69003A9FB3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BFBB6FD91FA44089003A9FB3 /* Sprites */,
+				BF7C7B271FA1852500B2A303 /* GameViewController.swift */,
+				BF7C7B251FA1852500B2A303 /* GameScene.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BFBB6FE11FA44A86003A9FB3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BFBB6FE21FA44AAC003A9FB3 /* GameViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BF7C7B1B1FA1852400B2A303 /* Eumgame */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF7C7B4A1FA1852600B2A303 /* Build configuration list for PBXNativeTarget "Eumgame" */;
+			buildPhases = (
+				EB14E1FD6C011CC80E315484 /* [CP] Check Pods Manifest.lock */,
+				BF7C7B181FA1852400B2A303 /* Sources */,
+				BF7C7B191FA1852400B2A303 /* Frameworks */,
+				BF7C7B1A1FA1852400B2A303 /* Resources */,
+				B6E8C9F90F54953582CDDD4D /* [CP] Embed Pods Frameworks */,
+				C06A625D660A623E2B8034E1 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Eumgame;
+			productName = Eumgame;
+			productReference = BF7C7B1C1FA1852400B2A303 /* Eumgame.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BF7C7B351FA1852600B2A303 /* EumgameTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF7C7B4D1FA1852600B2A303 /* Build configuration list for PBXNativeTarget "EumgameTests" */;
+			buildPhases = (
+				BF7C7B321FA1852600B2A303 /* Sources */,
+				BF7C7B331FA1852600B2A303 /* Frameworks */,
+				BF7C7B341FA1852600B2A303 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BF7C7B381FA1852600B2A303 /* PBXTargetDependency */,
+			);
+			name = EumgameTests;
+			productName = EumgameTests;
+			productReference = BF7C7B361FA1852600B2A303 /* EumgameTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BF7C7B401FA1852600B2A303 /* EumgameUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF7C7B501FA1852600B2A303 /* Build configuration list for PBXNativeTarget "EumgameUITests" */;
+			buildPhases = (
+				BF7C7B3D1FA1852600B2A303 /* Sources */,
+				BF7C7B3E1FA1852600B2A303 /* Frameworks */,
+				BF7C7B3F1FA1852600B2A303 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BF7C7B431FA1852600B2A303 /* PBXTargetDependency */,
+			);
+			name = EumgameUITests;
+			productName = EumgameUITests;
+			productReference = BF7C7B411FA1852600B2A303 /* EumgameUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BF7C7B141FA1852400B2A303 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = KinakoInc;
+				TargetAttributes = {
+					BF7C7B1B1FA1852400B2A303 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = C233AYQD23;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+					};
+					BF7C7B351FA1852600B2A303 = {
+						CreatedOnToolsVersion = 8.3.3;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+						TestTargetID = BF7C7B1B1FA1852400B2A303;
+					};
+					BF7C7B401FA1852600B2A303 = {
+						CreatedOnToolsVersion = 8.3.3;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+						TestTargetID = BF7C7B1B1FA1852400B2A303;
+					};
+				};
+			};
+			buildConfigurationList = BF7C7B171FA1852400B2A303 /* Build configuration list for PBXProject "Eumgame" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BF7C7B131FA1852400B2A303;
+			productRefGroup = BF7C7B1D1FA1852400B2A303 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BF7C7B1B1FA1852400B2A303 /* Eumgame */,
+				BF7C7B351FA1852600B2A303 /* EumgameTests */,
+				BF7C7B401FA1852600B2A303 /* EumgameUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BF7C7B1A1FA1852400B2A303 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF7C7B2B1FA1852500B2A303 /* Main.storyboard in Resources */,
+				BF7C7B2D1FA1852500B2A303 /* Assets.xcassets in Resources */,
+				BF7C7B301FA1852500B2A303 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF7C7B341FA1852600B2A303 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF7C7B3F1FA1852600B2A303 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B6E8C9F90F54953582CDDD4D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Eumgame/Pods-Eumgame-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Eumgame/Pods-Eumgame-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C06A625D660A623E2B8034E1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Eumgame/Pods-Eumgame-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EB14E1FD6C011CC80E315484 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Eumgame-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BF7C7B181FA1852400B2A303 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BFBB6FE71FA44C1B003A9FB3 /* UserBallSprite.swift in Sources */,
+				BFBB6FE91FA47AA8003A9FB3 /* Configuration.swift in Sources */,
+				BFBB6FE31FA44AAC003A9FB3 /* GameViewModel.swift in Sources */,
+				BF7C7B261FA1852500B2A303 /* GameScene.swift in Sources */,
+				BFBB6FDF1FA4449F003A9FB3 /* AppServerClient.swift in Sources */,
+				BF7C7B281FA1852500B2A303 /* GameViewController.swift in Sources */,
+				BFBB6FE51FA44C0D003A9FB3 /* WordBallSprite.swift in Sources */,
+				BF7C7B201FA1852400B2A303 /* AppDelegate.swift in Sources */,
+				BFBB6FDB1FA440FC003A9FB3 /* Constants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF7C7B321FA1852600B2A303 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF7C7B3B1FA1852600B2A303 /* EumgameTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF7C7B3D1FA1852600B2A303 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF7C7B461FA1852600B2A303 /* EumgameUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BF7C7B381FA1852600B2A303 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BF7C7B1B1FA1852400B2A303 /* Eumgame */;
+			targetProxy = BF7C7B371FA1852600B2A303 /* PBXContainerItemProxy */;
+		};
+		BF7C7B431FA1852600B2A303 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BF7C7B1B1FA1852400B2A303 /* Eumgame */;
+			targetProxy = BF7C7B421FA1852600B2A303 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BF7C7B291FA1852500B2A303 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF7C7B2A1FA1852500B2A303 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BF7C7B2E1FA1852500B2A303 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF7C7B2F1FA1852500B2A303 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BF7C7B481FA1852600B2A303 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BF7C7B491FA1852600B2A303 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BF7C7B4B1FA1852600B2A303 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E912096FC77A0A58F0C5B2DE /* Pods-Eumgame.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = C233AYQD23;
+				INFOPLIST_FILE = Eumgame/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.uni-english";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		BF7C7B4C1FA1852600B2A303 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FA818CA49660726B07AB4566 /* Pods-Eumgame.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = C233AYQD23;
+				INFOPLIST_FILE = Eumgame/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "net.uni-english";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		BF7C7B4E1FA1852600B2A303 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = EumgameTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kinakoinc.EumgameTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Eumgame.app/Eumgame";
+			};
+			name = Debug;
+		};
+		BF7C7B4F1FA1852600B2A303 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = EumgameTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kinakoinc.EumgameTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Eumgame.app/Eumgame";
+			};
+			name = Release;
+		};
+		BF7C7B511FA1852600B2A303 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = EumgameUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kinakoinc.EumgameUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = Eumgame;
+			};
+			name = Debug;
+		};
+		BF7C7B521FA1852600B2A303 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = EumgameUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kinakoinc.EumgameUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = Eumgame;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BF7C7B171FA1852400B2A303 /* Build configuration list for PBXProject "Eumgame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF7C7B481FA1852600B2A303 /* Debug */,
+				BF7C7B491FA1852600B2A303 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF7C7B4A1FA1852600B2A303 /* Build configuration list for PBXNativeTarget "Eumgame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF7C7B4B1FA1852600B2A303 /* Debug */,
+				BF7C7B4C1FA1852600B2A303 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF7C7B4D1FA1852600B2A303 /* Build configuration list for PBXNativeTarget "EumgameTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF7C7B4E1FA1852600B2A303 /* Debug */,
+				BF7C7B4F1FA1852600B2A303 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF7C7B501FA1852600B2A303 /* Build configuration list for PBXNativeTarget "EumgameUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF7C7B511FA1852600B2A303 /* Debug */,
+				BF7C7B521FA1852600B2A303 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BF7C7B141FA1852400B2A303 /* Project object */;
+}

@@ -1,11 +1,3 @@
-//
-//  AppServerClient.swift
-//  Eumgame
-//
-//  Created by Elena Kapilevich on 10/28/17.
-//  Copyright © 2017 KinakoInc. All rights reserved.
-//
-
 import Alamofire
 import ReactiveSwift
 
@@ -44,7 +36,7 @@ class AppServerClient {
 						observer.sendCompleted()
 					}
 			}*/
-			observer.send(value: (sentence: "Test0 Test\(self.tempCounter) Test2", userWord: "Test\(self.tempCounter)", soundUrl: ""))
+			observer.send(value: (sentence: "Threw It On The Ground Test\(self.tempCounter)", userWord: "Test\(self.tempCounter)", soundUrl: ""))
 			observer.sendCompleted()
 			self.tempCounter += 1
 		}

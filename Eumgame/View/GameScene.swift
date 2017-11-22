@@ -1,62 +1,35 @@
-//
-//  GameScene.swift
-//  Eumgame
-//
-//  Created by Elena Kapilevich on 10/26/17.
-//  Copyright © 2017 KinakoInc. All rights reserved.
-//
-
 import SpriteKit
 import ReactiveSwift
 import ReactiveCocoa
 
+protocol GameManagerDelegate {
+	func startNewRound()
+}
+
 class GameScene: SKScene {
-	//TODO: FIX unwrapping
-    private var wordLabel: SKLabelNode!
-    private var userBall: SKShapeNode!
+    private var userBall: SKShapeNode?
 	private var wordsBalls = [WordBallSprite]()
 	private var touching: Bool = false
 	private var touchPoint: CGPoint = CGPoint()
 	private var viewModel = GameViewModel()
-
+	var gameManagerDelegate: GameManagerDelegate?
+	
     override func didMove(to view: SKView) {
 		physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
 		backgroundColor = SKColor.white
 		physicsWorld.contactDelegate = self
-		
-		userBall = UserBallSprite(ballOfRadius: GameConfig.ballRadius)
-		userBall.position = CGPoint(x: frame.width / 2, y: 0)
-		addChild(userBall)
-		
-		startNewRound()
+		addUserBall()
+		gameManagerDelegate?.startNewRound()
     }
 	
-	func startNewRound() {
-		let signalProducer = viewModel.getWord()
-		
-		signalProducer.start() { [weak self] result in
-			DispatchQueue.main.async {
-				switch result {
-				case .completed:
-					self?.showNewSentence()
-				case let .failed(error):
-					//TODO: handle errors
-					break
-				default:
-					break
-				}
-			}
-		}
-	}
+	//MARK: - Elements creation
 	
-	func showNewSentence() {
+	func showBallsForSentence() {
 		for wordBall in wordsBalls {
 			wordBall.removeFromParent()
 		}
 		
 		wordsBalls.removeAll()
-		wordLabel?.removeFromParent()
-		
 		let sector = frame.width / CGFloat(viewModel.wordsNumber)
 		
 		for i in 0..<viewModel.wordsNumber {
@@ -65,24 +38,24 @@ class GameScene: SKScene {
 			ball.position = CGPoint(x: sector * CGFloat(i) + sector / 2, y: frame.height - GameConfig.ballRadius - GameConfig.screenMargin)
 			addChild(ball)
 		}
-		
-		addWordLabel()
 	}
 	
-	func addWordLabel() {
-		wordLabel = SKLabelNode(fontNamed: "Chalkduster")
-		//wordLabel.reactive.makeBindingTarget{$0.text = $1} <~ viewModel.userWord
-		wordLabel.text = viewModel.userWord.value
-		wordLabel.fontColor = .black
-		wordLabel.horizontalAlignmentMode = .right
-		wordLabel.position = CGPoint(x: frame.width, y: GameConfig.screenMargin)
-		addChild(wordLabel)
+	func addUserBall() {
+		userBall = UserBallSprite(ballOfRadius: GameConfig.ballRadius)
+	
+		guard let userBall = userBall else { return }
+		
+		userBall.position = CGPoint(x: frame.width / 2, y: 0)
+		addChild(userBall)
 	}
 	
 	//MARK: - User Interaction
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		let touch = touches.first!
 		let location = touch.location(in: self)
+		
+		guard let userBall = userBall else { return }
+		makeUserBall(active: true)
 		
 		if userBall.frame.contains(location) {
 			touchPoint = location
@@ -101,12 +74,24 @@ class GameScene: SKScene {
 	}
 	
 	override func update(_ currentTime: TimeInterval) {
+		guard let userBall = userBall else { return }
+
 		if touching {
 			let dt:CGFloat = 1.0 / 60.0
 			let distance = CGVector(dx: touchPoint.x - userBall.position.x, dy: touchPoint.y - userBall.position.y)
 			let velocity = CGVector(dx: distance.dx / dt, dy: distance.dy / dt)
 			userBall.physicsBody!.velocity = velocity
-		}
+		} /*else if 0 < userBall.position.y && userBall.position.y < GameConfig.returnLinePosition { //Return ball to the initial position
+			makeUserBall(active: false)
+			let action = SKAction.move(to: CGPoint.init(x: frame.width / 2, y: 0), duration: 3.0)
+			action.timingMode = .easeInEaseOut
+			userBall.run(action)
+		}*/
+	}
+	
+	func makeUserBall(active: Bool) {
+		userBall?.physicsBody?.affectedByGravity = active
+		userBall?.physicsBody?.isDynamic = active
 	}
 }
 
@@ -116,13 +101,13 @@ extension GameScene: SKPhysicsContactDelegate {
 			(contact.bodyA.node as! WordBallSprite).fillColor = .orange
 			
 			if wordsBalls.index(of: contact.bodyA.node as! WordBallSprite) == viewModel.searchWordIndex {
-				startNewRound()
+				gameManagerDelegate?.startNewRound()
 			}
 		} else if contact.bodyB.categoryBitMask == PhysicsCategories.wordBallCategory {
 			(contact.bodyB.node as! WordBallSprite).fillColor = .orange
 			
 			if wordsBalls.index(of: contact.bodyB.node as! WordBallSprite) == viewModel.searchWordIndex {
-				startNewRound()
+				gameManagerDelegate?.startNewRound()
 			}
 		}
 	}

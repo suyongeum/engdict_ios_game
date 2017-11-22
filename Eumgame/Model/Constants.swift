@@ -1,10 +1,3 @@
-//
-//  Constants.swift
-//  Eumgame
-//
-//  Created by Elena Kapilevich on 10/28/17.
-//  Copyright © 2017 KinakoInc. All rights reserved.
-//
 import SpriteKit
 
 struct PhysicsCategories {
@@ -26,4 +19,5 @@ struct JsonKey {
 struct GameConfig {
 	static let ballRadius: CGFloat = 20.0
 	static let screenMargin: CGFloat = 20.0
+	static let returnLinePosition: CGFloat = 50.0
 }

@@ -1,21 +1,15 @@
-//
-//  GameViewModel.swift
-//  Eumgame
-//
-//  Created by Elena Kapilevich on 10/28/17.
-//  Copyright © 2017 KinakoInc. All rights reserved.
-//
-
 import ReactiveSwift
 import Result
 
 class GameViewModel {
 	var userWord = MutableProperty("")
+	var sentence = MutableProperty("")
 	var searchWordIndex = 1
 	var wordsNumber = 0
 	
 	init() {
 		userWord <~ Configuration.shared.sentence.value.userWord
+		sentence <~  Configuration.shared.sentence.value.sentence
 		
 		Configuration.shared.sentence.value.sentence.producer.start {newValue in
 			let chararacterSet = CharacterSet.whitespacesAndNewlines.union(.punctuationCharacters)

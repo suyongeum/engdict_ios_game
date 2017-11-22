@@ -1,31 +1,56 @@
-//
-//  GameViewController.swift
-//  Eumgame
-//
-//  Created by Elena Kapilevich on 10/26/17.
-//  Copyright © 2017 KinakoInc. All rights reserved.
-//
-
 import UIKit
 import SpriteKit
 import GameplayKit
 
 class GameViewController: UIViewController {
 
-    override func viewDidLoad() {
+	@IBOutlet weak var gameView: SKView!
+	@IBOutlet weak var sentenceLabel: UILabel!
+	@IBOutlet weak var wordLabel: UILabel!
+	
+	private var viewModel = GameViewModel()
+	private var mainScene: GameScene?
+	
+	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		let scene = GameScene(size: view.bounds.size)
-		let skView = view as! SKView
-		skView.showsFPS = true
-		skView.showsNodeCount = true
-		skView.showsPhysics = true
-		skView.ignoresSiblingOrder = true
-		scene.scaleMode = .resizeFill
-		skView.presentScene(scene)
+		mainScene = GameScene(size: gameView.bounds.size)
+		gameView.ignoresSiblingOrder = true
+		
+		guard let mainScene = mainScene else { return }
+		
+		mainScene.scaleMode = .resizeFill
+		mainScene.gameManagerDelegate = self
+		gameView.presentScene(mainScene)
     }
 
     override var prefersStatusBarHidden: Bool {
 		return false
     }
+}
+
+extension GameViewController: GameManagerDelegate {
+	func startNewRound() {
+		let signalProducer = viewModel.getWord()
+		
+		signalProducer.start() { [weak self] result in
+			DispatchQueue.main.async {
+				switch result {
+				case .completed:
+					self?.showNewSentence()
+				case let .failed(error):
+					//TODO: handle errors
+					break
+				default:
+					break
+				}
+			}
+		}
+	}
+	
+	func showNewSentence() {
+		wordLabel.text = viewModel.userWord.value
+		sentenceLabel.text = viewModel.sentence.value
+		mainScene?.showBallsForSentence()
+	}
 }

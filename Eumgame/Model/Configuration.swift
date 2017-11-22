@@ -1,10 +1,3 @@
-//
-//  Configuration.swift
-//  Eumgame
-//
-//  Created by Elena Kapilevich on 10/28/17.
-//  Copyright © 2017 KinakoInc. All rights reserved.
-//
 import Foundation
 import ReactiveSwift
 

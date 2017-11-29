@@ -52,5 +52,6 @@ extension GameViewController: GameManagerDelegate {
 		wordLabel.text = viewModel.userWord.value
 		sentenceLabel.text = viewModel.sentence.value
 		mainScene?.showBallsForSentence()
+		updateViewConstraints()
 	}
 }

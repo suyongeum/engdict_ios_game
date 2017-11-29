@@ -30,9 +30,9 @@ class GameScene: SKScene {
 		}
 		
 		wordsBalls.removeAll()
-		let sector = frame.width / CGFloat(viewModel.wordsNumber)
+		let sector = frame.width / CGFloat(viewModel.totalWordsNumber.value)
 		
-		for i in 0..<viewModel.wordsNumber {
+		for i in 0..<viewModel.totalWordsNumber.value {
 			let ball = WordBallSprite(ballOfRadius: GameConfig.ballRadius)
 			wordsBalls.append(ball)
 			ball.position = CGPoint(x: sector * CGFloat(i) + sector / 2, y: frame.height - GameConfig.ballRadius - GameConfig.screenMargin)
@@ -96,17 +96,17 @@ class GameScene: SKScene {
 }
 
 extension GameScene: SKPhysicsContactDelegate {
-	func didBegin(_ contact: SKPhysicsContact) {	
+	func didBegin(_ contact: SKPhysicsContact) {
 		if contact.bodyA.categoryBitMask == PhysicsCategories.wordBallCategory {
 			(contact.bodyA.node as! WordBallSprite).fillColor = .orange
 			
-			if wordsBalls.index(of: contact.bodyA.node as! WordBallSprite) == viewModel.searchWordIndex {
+			if wordsBalls.index(of: contact.bodyA.node as! WordBallSprite) == viewModel.userWordIndex.value {
 				gameManagerDelegate?.startNewRound()
 			}
 		} else if contact.bodyB.categoryBitMask == PhysicsCategories.wordBallCategory {
 			(contact.bodyB.node as! WordBallSprite).fillColor = .orange
-			
-			if wordsBalls.index(of: contact.bodyB.node as! WordBallSprite) == viewModel.searchWordIndex {
+
+			if wordsBalls.index(of: contact.bodyB.node as! WordBallSprite) == viewModel.userWordIndex.value {
 				gameManagerDelegate?.startNewRound()
 			}
 		}

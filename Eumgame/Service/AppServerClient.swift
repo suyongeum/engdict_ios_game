@@ -2,8 +2,6 @@ import Alamofire
 import ReactiveSwift
 
 class AppServerClient {
-	//TODO: Temp counter for test. Remove after adding server side
-	private var tempCounter: Int = 0
 	public static let shared = AppServerClient()
 	private init() {}
 	
@@ -12,10 +10,10 @@ class AppServerClient {
 		case unnamedError = 1
 	}
 	
-	func getSentence() -> SignalProducer<(sentence: String, userWord: String, soundUrl: String), ServerError> {
+	func getSentence() -> SignalProducer<Words, ServerError> {
 		return SignalProducer { observer, disposable in
-			/*let parameters:Parameters = [:]
-			Alamofire.request(Network.apiUrl + Network.sentenceMethod, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+			let parameters: Parameters = [UrlParameters.contentId: 505, UrlParameters.lineId: 1, UrlParameters.difficulty: 3]
+			Alamofire.request(Network.apiUrl + Network.sentenceMethod, method: .get, parameters: parameters, encoding: URLEncoding.default)
 				.validate(statusCode: [200])
 				.responseJSON { response in
 					guard response.error == nil else {
@@ -28,17 +26,16 @@ class AppServerClient {
 						return
 					}
 					
-					if let result = response.result.value {
-						let jsonResult = result as! Dictionary<String, Any>
-						observer.send(value: (sentence: jsonResult[JsonKey.pairId] as! String,
-												userWord: jsonResult[JsonKey.recipientName,
-												soundUrl: jsonResult[JsonKey.recipientName] as! String))
-						observer.sendCompleted()
+					guard let data = response.data else { return }
+					let decoder = JSONDecoder()
+					
+					do {
+						let words = try decoder.decode(Words.self, from: data)
+						observer.send(value: words)
+					} catch {
+						observer.send(error: ServerError.unnamedError)
 					}
-			}*/
-			observer.send(value: (sentence: "Threw It On The Ground Test\(self.tempCounter)", userWord: "Test\(self.tempCounter)", soundUrl: ""))
-			observer.sendCompleted()
-			self.tempCounter += 1
-		}
+				}
+			}
 	}
 }

@@ -38,18 +38,18 @@ class Configuration: NSObject {
 			clearConfig()
 			
 			for wordConfig in words {
-				totalWordsNumber.value += 1
-				
 				if wordConfig.isGap {
-					wholeSentense.value = wholeSentense.value  + "____ "
+					totalWordsNumber.value += 1
 					userWords.append(wordConfig)
+					wholeSentense.value = wholeSentense.value  + "(   \(userWords.count)   )"
 				} else {
 					wholeSentense.value = wholeSentense.value + (wordConfig.word ?? "NIL") + " "
 				}
 			}
 			
+			currentGuessingWordIndex = Int(arc4random_uniform(UInt32(userWords.count)))
 			userWord.value = userWords[currentGuessingWordIndex].word ?? ""
-			userWordIndex.value = userWords[currentGuessingWordIndex].order - 1
+			userWordIndex.value = currentGuessingWordIndex
 		}
 	}
 	

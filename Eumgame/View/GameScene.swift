@@ -34,6 +34,7 @@ class GameScene: SKScene {
 		
 		for i in 0..<viewModel.totalWordsNumber.value {
 			let ball = WordBallSprite(ballOfRadius: GameConfig.ballRadius)
+			ball.text = String(i + 1)
 			wordsBalls.append(ball)
 			ball.position = CGPoint(x: sector * CGFloat(i) + sector / 2, y: frame.height - GameConfig.ballRadius - GameConfig.screenMargin)
 			addChild(ball)
@@ -95,6 +96,8 @@ class GameScene: SKScene {
 	}
 }
 
+
+
 extension GameScene: SKPhysicsContactDelegate {
 	func didBegin(_ contact: SKPhysicsContact) {
 		if contact.bodyA.categoryBitMask == PhysicsCategories.wordBallCategory {
@@ -106,6 +109,7 @@ extension GameScene: SKPhysicsContactDelegate {
 		} else if contact.bodyB.categoryBitMask == PhysicsCategories.wordBallCategory {
 			(contact.bodyB.node as! WordBallSprite).fillColor = .orange
 
+			
 			if wordsBalls.index(of: contact.bodyB.node as! WordBallSprite) == viewModel.userWordIndex.value {
 				gameManagerDelegate?.startNewRound()
 			}

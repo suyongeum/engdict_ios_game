@@ -18,7 +18,7 @@ class GameViewModel {
 		return SignalProducer { observer, disposable in
 			let signalProducer = AppServerClient.shared.getSentence()
 			
-			signalProducer.start(){ result in
+			signalProducer.start{ result in
 				switch result {
 				case let .value(value):
 					Configuration.shared.currentWords = value
@@ -28,8 +28,6 @@ class GameViewModel {
 				default:
 					break
 				}
-
-				//disposable.ended
 			}
 		}
 	}

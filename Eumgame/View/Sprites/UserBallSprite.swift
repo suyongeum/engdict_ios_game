@@ -10,6 +10,6 @@ class UserBallSprite: SKShapeNode {
 		physicsBody?.collisionBitMask = PhysicsCategories.wordBallCategory
 		physicsBody?.contactTestBitMask = PhysicsCategories.wordBallCategory
 		physicsBody?.restitution = 0.4
-		physicsBody?.allowsRotation = true
+		physicsBody?.allowsRotation = false
 	}
 }

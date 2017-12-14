@@ -30,4 +30,7 @@ struct GameConfig {
 	static let ballRadius: CGFloat = 20.0
 	static let screenMargin: CGFloat = 20.0
 	static let returnLinePosition: CGFloat = 50.0
+	static let contentId: Int = 505
+	static let lineId: Int = 1
+	static let difficulty: Int = 3
 }

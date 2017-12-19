@@ -10,7 +10,7 @@ struct Word: Codable {
 	var difficulty: Int
 	var order: Int
 	var isGap: Bool
-	var definition: String
+	var definition: String?
 	
 	enum CodingKeys: String, CodingKey {
 		case word = "word"
@@ -21,16 +21,21 @@ struct Word: Codable {
 	}
 }
 
+struct GuessingWord {
+	var wordObject: Word
+	var position: Int
+}
+
 class Configuration: NSObject {
 	static let shared = Configuration()
 	
-	var soundUrl: MutableProperty<String>?
 	var wholeSentense = MutableProperty("")
 	var totalWordsNumber = MutableProperty(0)
 	var userWordIndex = MutableProperty(0)
 	var userWord = MutableProperty("")
-	var currentGuessingWordIndex = 0
-	var userWords = [Word]()
+	var userWordPosition = MutableProperty(0)
+	var userWords = [GuessingWord]()
+	var lineId = 0
 		
 	var currentWords: Words? {
 		didSet {
@@ -39,25 +44,28 @@ class Configuration: NSObject {
 			
 			for wordConfig in words {
 				if wordConfig.isGap {
+					userWords.append(GuessingWord(wordObject: wordConfig, position: totalWordsNumber.value))
 					totalWordsNumber.value += 1
-					userWords.append(wordConfig)
 					wholeSentense.value = wholeSentense.value  + "(   \(userWords.count)   )"
 				} else {
 					wholeSentense.value = wholeSentense.value + (wordConfig.word ?? "NIL") + " "
 				}
 			}
-			
-			currentGuessingWordIndex = Int(arc4random_uniform(UInt32(userWords.count)))
-			userWord.value = userWords[currentGuessingWordIndex].word ?? ""
-			userWordIndex.value = currentGuessingWordIndex
 		}
 	}
 	
+	func setCurrentUserWordIndex(_ index: Int) {
+		userWordIndex.value = index
+		guard !userWords.isEmpty else { return }
+		userWord.value = userWords[userWordIndex.value].wordObject.word ?? ""
+		userWordPosition.value = userWords[userWordIndex.value].position
+	}
+	
 	private func clearConfig() {
-		currentGuessingWordIndex = 0
 		totalWordsNumber.value = 0
 		userWords.removeAll()
 		wholeSentense.value = ""
 		userWordIndex.value = 0
+		userWordPosition.value = 0
 	}
 }

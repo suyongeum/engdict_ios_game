@@ -55,26 +55,21 @@ extension GameViewController: GameManagerDelegate {
 	func startNewRound() {
 		let signalProducer = viewModel.getWord()
 		
-		signalProducer.start() { [weak self] result in
-			DispatchQueue.main.async {
-				switch result {
-				case .completed:
+		signalProducer.startWithResult({ result in
+			result.analysis(ifSuccess: { [weak self] (words) in
+				DispatchQueue.main.async {
 					self?.showNewSentence()
-				case let .failed(error):
-					//TODO: handle errors
-					break
-				default:
-					break
 				}
-			}
-		}
+				}, ifFailure: { (error) in
+					//TODO: handle errors
+			})
+		})
 	}
 	
 	func showNewSentence() {
 		wordLabel.text = viewModel.userWord.value
 		sentenceLabel.text = viewModel.sentence.value
 		mainScene?.showBallsForSentence()
-		view.setNeedsLayout()
-		playSound(fromUrl: "http://www.uni-english.net:7777/get_audio?content_id=505&line_id=1")
+		playSound(fromUrl: "http://www.uni-english.net:7777/get_audio?content_id=505&line_id=" + String(Configuration.shared.lineId))
 	}
 }

@@ -27,20 +27,29 @@ class GameScene: SKScene {
     }
 	
 	//MARK: - Elements creation
-
+	override func didApplyConstraints() {
+		let sector = frame.width / CGFloat(viewModel.totalWordsNumber.value)
+		
+		for (i, wordBall) in wordsBalls.enumerated() {
+			wordBall.position = CGPoint(x: sector * CGFloat(i) + sector / 2, y: frame.height - GameConfig.ballRadius * 2 - GameConfig.screenMargin)
+		}
+	}
+	
 	func showBallsForSentence() {
+		guard let view = view else { return }
+		
 		for wordBall in wordsBalls {
 			wordBall.removeFromParent()
 		}
 		
 		wordsBalls.removeAll()
-		let sector = frame.width / CGFloat(viewModel.totalWordsNumber.value)
+		let sector = view.frame.width / CGFloat(viewModel.totalWordsNumber.value)
 		
 		for i in 0..<viewModel.totalWordsNumber.value {
 			let ball = WordBallSprite(ballOfRadius: GameConfig.ballRadius)
 			ball.text = String(i + 1)
 			wordsBalls.append(ball)
-			ball.position = CGPoint(x: sector * CGFloat(i) + sector / 2, y: frame.height - GameConfig.ballRadius * 2)
+			ball.position = CGPoint(x: sector * CGFloat(i) + sector / 2, y: view.frame.height - GameConfig.ballRadius * 2 - GameConfig.screenMargin)
 			addChild(ball)
 		}
 	}
@@ -56,16 +65,17 @@ class GameScene: SKScene {
 	
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		guard state != .paused else { return }
-		state = .touching
+		
 		let touch = touches.first!
 		let location = touch.location(in: self)
-		userBall?.physicsBody?.isDynamic = true
-		userBall?.physicsBody?.affectedByGravity = true
 		
 		guard let userBall = userBall else { return }
 		
 		if userBall.frame.contains(location) {
 			touchPoint = location
+			userBall.physicsBody?.isDynamic = true
+			userBall.physicsBody?.affectedByGravity = true
+			state = .touching
 		}
 	}
 	
@@ -128,7 +138,7 @@ extension GameScene: SKPhysicsContactDelegate {
 		guard let ball = body else { return }
 		ball.fillColor = .orange
 		
-		if wordsBalls.index(of: ball) == viewModel.userWordIndex.value {
+		if wordsBalls.index(of: ball) == viewModel.userWordPosition.value {
 			state = .paused
 			gameManagerDelegate?.startNewRound()
 		}

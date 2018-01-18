@@ -11,32 +11,51 @@ class GameScene: SKScene {
 		case paused, roundInProgress, touching
 	}
 	
-    private var userBall: SKShapeNode?
+  private var userBall: SKShapeNode?
 	private var wordsBalls = [WordBallSprite]()
 	private var touchPoint: CGPoint = CGPoint()
-	private var viewModel = GameViewModel()
+	var viewModel: GameViewModel?
 	private var state: State = .paused
 	var gameManagerDelegate: GameManagerDelegate?
 	
-    override func didMove(to view: SKView) {
+  override func didMove(to view: SKView) {
 		physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
 		backgroundColor = SKColor.white
 		physicsWorld.contactDelegate = self
+    addObstacle()
 		addUserBall()
 		gameManagerDelegate?.startNewRound()
-    }
+  }
 	
 	//MARK: - Elements creation
 	override func didApplyConstraints() {
+		guard let viewModel = viewModel else { return }
 		let sector = frame.width / CGFloat(viewModel.totalWordsNumber.value)
 		
 		for (i, wordBall) in wordsBalls.enumerated() {
 			wordBall.position = CGPoint(x: sector * CGFloat(i) + sector / 2, y: frame.height - GameConfig.ballRadius * 2 - GameConfig.screenMargin)
 		}
 	}
+  
+  func addObstacle() {
+    guard let frame = view?.frame else { return }
+    
+    let size = CGSize(width: 100, height: 50)
+    let obstacle = SKShapeNode(rectOf: size)
+    obstacle.fillColor = .darkGray
+    obstacle.position = CGPoint(x: frame.width / 2, y: frame.height / 2)
+    
+    obstacle.physicsBody = SKPhysicsBody(rectangleOf: size)
+    obstacle.physicsBody?.affectedByGravity = false
+    obstacle.physicsBody?.categoryBitMask = PhysicsCategories.obstacleCategory
+    obstacle.physicsBody?.isDynamic = false
+    
+    addChild(obstacle)
+  }
 	
 	func showBallsForSentence() {
 		guard let view = view else { return }
+		guard let viewModel = viewModel else { return }
 		
 		for wordBall in wordsBalls {
 			wordBall.removeFromParent()
@@ -138,8 +157,11 @@ extension GameScene: SKPhysicsContactDelegate {
 		guard let ball = body else { return }
 		ball.fillColor = .orange
 		
+		guard let viewModel = viewModel else { return }
+		
 		if wordsBalls.index(of: ball) == viewModel.userWordPosition.value {
 			state = .paused
+			viewModel.points.value += 1
 			gameManagerDelegate?.startNewRound()
 		}
 	}

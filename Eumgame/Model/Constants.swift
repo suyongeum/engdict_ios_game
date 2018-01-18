@@ -3,6 +3,7 @@ import SpriteKit
 struct PhysicsCategories {
 	static let wordBallCategory : UInt32 = 0x1 << 1
 	static let userBallCategory : UInt32 = 0x1 << 2
+  static let obstacleCategory : UInt32 = 0x1 << 3
 }
 
 struct Network {
@@ -24,6 +25,12 @@ struct JsonKey {
 	static let order = "order"
 	static let isGap = "is_gap"
 	static let definition = "definition"
+}
+
+struct UITextConst {
+	static let menu = "Menu"
+	static let score = "Score"
+	static let word = "Word"
 }
 
 struct GameConfig {

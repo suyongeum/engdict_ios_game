@@ -10,9 +10,9 @@ class AppServerClient {
 		case unnamedError = 1
 	}
 	
-	func getSentence(lineId: Int) -> SignalProducer<Words, ServerError> {
+	func getSentence(lineId: Int, contentId: Int) -> SignalProducer<Words, ServerError> {
 		return SignalProducer { observer, disposable in
-			let parameters: Parameters = [UrlParameters.contentId: GameConfig.contentId, UrlParameters.lineId: lineId, UrlParameters.difficulty: GameConfig.difficulty]
+			let parameters: Parameters = [UrlParameters.contentId: contentId, UrlParameters.lineId: lineId, UrlParameters.difficulty: GameConfig.difficulty]
 			Alamofire.request(Network.apiUrl + Network.sentenceMethod, method: .get, parameters: parameters, encoding: URLEncoding.default)
 				.validate(statusCode: [200])
 				.responseJSON { response in

@@ -4,11 +4,15 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
-
+  var appFlowController: AppFlowController?
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    // Override point for customization after application launch.
-    return true
+	window = UIWindow(frame: UIScreen.main.bounds)
+	window?.rootViewController = UINavigationController()
+	appFlowController = AppFlowController(with: window?.rootViewController as! UINavigationController)
+	appFlowController?.start()
+	window?.makeKeyAndVisible()
+	return true
   }
 
   func applicationWillResignActive(_ application: UIApplication) {

@@ -2,11 +2,15 @@ import ReactiveSwift
 import Result
 
 class GameViewModel {
+	var flowDelegate: FlowController?
 	var userWord = MutableProperty("")
 	var sentence = MutableProperty("")
 	var userWordIndex = MutableProperty(0)
 	var totalWordsNumber = MutableProperty(0)
 	var userWordPosition = MutableProperty(0)
+	var points = MutableProperty(0)
+	var pointsString = MutableProperty("")
+	var contentId = 505
 	
 	init() {
 		userWord <~ Configuration.shared.userWord
@@ -14,6 +18,9 @@ class GameViewModel {
 		totalWordsNumber <~ Configuration.shared.totalWordsNumber
 		userWordIndex <~ Configuration.shared.userWordIndex
 		userWordPosition <~ Configuration.shared.userWordPosition
+		points.producer.startWithValues { [weak self] points in
+			self?.pointsString.value = UITextConst.score + ": " + String(points)
+		}
 	}
 		
 	func getWord() -> SignalProducer<Void, AppServerClient.ServerError> {
@@ -35,7 +42,9 @@ class GameViewModel {
 					Configuration.shared.lineId = 1
 				}
 				
-				let signalProducer = AppServerClient.shared.getSentence(lineId: Configuration.shared.lineId)
+				guard let contentId = self?.contentId else { return }
+				
+				let signalProducer = AppServerClient.shared.getSentence(lineId: Configuration.shared.lineId, contentId: contentId)
 				
 				signalProducer.startWithResult { result in
 					result.analysis(ifSuccess: { [weak self] (words) in

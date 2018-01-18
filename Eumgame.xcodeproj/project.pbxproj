@@ -22,6 +22,9 @@
 		BFBB6FE51FA44C0D003A9FB3 /* WordBallSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB6FE41FA44C0D003A9FB3 /* WordBallSprite.swift */; };
 		BFBB6FE71FA44C1B003A9FB3 /* UserBallSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB6FE61FA44C1B003A9FB3 /* UserBallSprite.swift */; };
 		BFBB6FE91FA47AA8003A9FB3 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBB6FE81FA47AA8003A9FB3 /* Configuration.swift */; };
+		BFE3501D200E353400241FA1 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE3501C200E353400241FA1 /* MenuTableViewController.swift */; };
+		BFE3501F200E388C00241FA1 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE3501E200E388C00241FA1 /* MenuViewModel.swift */; };
+		BFE35022200E434B00241FA1 /* AppFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE35021200E434B00241FA1 /* AppFlowController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +66,9 @@
 		BFBB6FE41FA44C0D003A9FB3 /* WordBallSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordBallSprite.swift; sourceTree = "<group>"; };
 		BFBB6FE61FA44C1B003A9FB3 /* UserBallSprite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBallSprite.swift; sourceTree = "<group>"; };
 		BFBB6FE81FA47AA8003A9FB3 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		BFE3501C200E353400241FA1 /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
+		BFE3501E200E388C00241FA1 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
+		BFE35021200E434B00241FA1 /* AppFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowController.swift; sourceTree = "<group>"; };
 		E912096FC77A0A58F0C5B2DE /* Pods-Eumgame.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eumgame.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eumgame/Pods-Eumgame.debug.xcconfig"; sourceTree = "<group>"; };
 		FA818CA49660726B07AB4566 /* Pods-Eumgame.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eumgame.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eumgame/Pods-Eumgame.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				BF7C7B1F1FA1852400B2A303 /* AppDelegate.swift */,
+				BFE35020200E40A600241FA1 /* FlowController */,
 				BFBB6FE01FA44A69003A9FB3 /* View */,
 				BFBB6FE11FA44A86003A9FB3 /* ViewModel */,
 				BFBB6FDC1FA44102003A9FB3 /* Model */,
@@ -196,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				BFBB6FD91FA44089003A9FB3 /* Sprites */,
+				BFE3501C200E353400241FA1 /* MenuTableViewController.swift */,
 				BF7C7B271FA1852500B2A303 /* GameViewController.swift */,
 				BF7C7B251FA1852500B2A303 /* GameScene.swift */,
 			);
@@ -205,9 +213,18 @@
 		BFBB6FE11FA44A86003A9FB3 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				BFE3501E200E388C00241FA1 /* MenuViewModel.swift */,
 				BFBB6FE21FA44AAC003A9FB3 /* GameViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BFE35020200E40A600241FA1 /* FlowController */ = {
+			isa = PBXGroup;
+			children = (
+				BFE35021200E434B00241FA1 /* AppFlowController.swift */,
+			);
+			path = FlowController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -413,8 +430,11 @@
 			files = (
 				BFBB6FE71FA44C1B003A9FB3 /* UserBallSprite.swift in Sources */,
 				BFBB6FE91FA47AA8003A9FB3 /* Configuration.swift in Sources */,
+				BFE3501D200E353400241FA1 /* MenuTableViewController.swift in Sources */,
+				BFE35022200E434B00241FA1 /* AppFlowController.swift in Sources */,
 				BFBB6FE31FA44AAC003A9FB3 /* GameViewModel.swift in Sources */,
 				BF7C7B261FA1852500B2A303 /* GameScene.swift in Sources */,
+				BFE3501F200E388C00241FA1 /* MenuViewModel.swift in Sources */,
 				BFBB6FDF1FA4449F003A9FB3 /* AppServerClient.swift in Sources */,
 				BF7C7B281FA1852500B2A303 /* GameViewController.swift in Sources */,
 				BFBB6FE51FA44C0D003A9FB3 /* WordBallSprite.swift in Sources */,

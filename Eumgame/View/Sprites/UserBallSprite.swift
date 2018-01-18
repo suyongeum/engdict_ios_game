@@ -7,8 +7,10 @@ class UserBallSprite: SKShapeNode {
 		fillColor = SKColor(red: 172/255, green: 206/255, blue: 0/255, alpha: 1.0)
 		physicsBody = SKPhysicsBody(circleOfRadius: radius)
 		physicsBody?.categoryBitMask = PhysicsCategories.userBallCategory
-		physicsBody?.collisionBitMask = PhysicsCategories.wordBallCategory
-		physicsBody?.contactTestBitMask = PhysicsCategories.wordBallCategory
+		
+    physicsBody?.collisionBitMask = PhysicsCategories.wordBallCategory | PhysicsCategories.obstacleCategory
+		physicsBody?.contactTestBitMask = PhysicsCategories.wordBallCategory | PhysicsCategories.obstacleCategory
+    
 		physicsBody?.restitution = 0.4
 		physicsBody?.allowsRotation = false
 	}

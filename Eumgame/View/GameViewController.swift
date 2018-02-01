@@ -16,7 +16,6 @@ class GameViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    print("!!!!")
     
     wordLabel.text = UITextConst.word + ": -"
     pointsLabel.text = UITextConst.score + ": -"
@@ -62,6 +61,18 @@ class GameViewController: UIViewController {
 		player?.rate = 1.0
 		player?.play()
 	}
+  
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    mainScene?.touchesBeganFromMainView(touches, with: event)
+  }
+  
+  override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    mainScene?.touchesMovedFromMainView(touches, with: event)
+  }
+  
+  override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    mainScene?.touchesEndedFromMainView(touches, with: event)
+  }
 }
 
 extension GameViewController: GameManagerDelegate {

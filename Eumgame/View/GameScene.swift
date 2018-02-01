@@ -14,6 +14,7 @@ class GameScene: SKScene {
   private var userBall: SKShapeNode?
 	private var wordsBalls = [WordBallSprite]()
 	private var touchPoint: CGPoint = CGPoint()
+  private var obstacles: [SKShapeNode] = []
 	var viewModel: GameViewModel?
 	private var state: State = .paused
 	var gameManagerDelegate: GameManagerDelegate?
@@ -22,7 +23,6 @@ class GameScene: SKScene {
 		physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
 		backgroundColor = SKColor.white
 		physicsWorld.contactDelegate = self
-    addObstacle()
 		addUserBall()
 		gameManagerDelegate?.startNewRound()
   }
@@ -37,20 +37,50 @@ class GameScene: SKScene {
 		}
 	}
   
-  func addObstacle() {
-    guard let frame = view?.frame else { return }
+  func addObstacles() {
+    for obstacle in obstacles {
+      obstacle.removeAllActions()
+      obstacle.removeFromParent()
+    }
     
-    let size = CGSize(width: 100, height: 50)
-    let obstacle = SKShapeNode(rectOf: size)
-    obstacle.fillColor = .darkGray
-    obstacle.position = CGPoint(x: frame.width / 2, y: frame.height / 2)
+    obstacles.removeAll()
     
-    obstacle.physicsBody = SKPhysicsBody(rectangleOf: size)
-    obstacle.physicsBody?.affectedByGravity = false
-    obstacle.physicsBody?.categoryBitMask = PhysicsCategories.obstacleCategory
-    obstacle.physicsBody?.isDynamic = false
-    
-    addChild(obstacle)
+    for index in 0..<3 {
+      let randomXPosition = 100 / 2 + CGFloat(arc4random_uniform(UInt32(frame.width - 100)))
+      let position = CGPoint(x: randomXPosition, y: frame.height / 2 - CGFloat(index * 50))
+      let obstacle = ObstacleSprite.init(size: CGSize(width: 100, height: 40))
+      obstacle.position = position
+      addChild(obstacle)
+      obstacles.append(obstacle)
+      
+      let random = Int(arc4random_uniform(2))
+      
+      //to the left
+      let speed = (frame.width - 100) / 3
+      let action: SKAction!
+      let reversedAction: SKAction!
+      let usualAction: SKAction!
+      let usualDuration = Double(frame.width / speed)
+      
+      if random == 0 {
+        let duration = Double(randomXPosition / speed)
+        
+        action = SKAction.moveTo(x: obstacle.frame.width / 2, duration: duration)
+        usualAction = SKAction.moveTo(x: obstacle.frame.width / 2, duration: usualDuration)
+        reversedAction = SKAction.moveTo(x: frame.width - obstacle.frame.width / 2, duration: usualDuration)
+      } else {
+        let duration = Double((frame.width - randomXPosition) / speed)
+        action = SKAction.moveTo(x: frame.width - obstacle.frame.width / 2, duration: duration)
+        usualAction = SKAction.moveTo(x: frame.width - obstacle.frame.width / 2, duration: usualDuration)
+        reversedAction = SKAction.moveTo(x: 0 + obstacle.frame.width / 2, duration: usualDuration)
+      }
+      
+      obstacle.run(action) {
+        let sequence = SKAction.sequence([reversedAction, usualAction])
+        let endlessAction = SKAction.repeatForever(sequence)
+         obstacle.run(endlessAction)
+      }
+    }
   }
 	
 	func showBallsForSentence() {
@@ -71,6 +101,8 @@ class GameScene: SKScene {
 			ball.position = CGPoint(x: sector * CGFloat(i) + sector / 2, y: view.frame.height - GameConfig.ballRadius * 2 - GameConfig.screenMargin)
 			addChild(ball)
 		}
+    
+    addObstacles()
 	}
 	
 	func addUserBall() {
@@ -82,7 +114,7 @@ class GameScene: SKScene {
 	
 	//MARK: - User Interaction
 	
-	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+	func touchesBeganFromMainView(_ touches: Set<UITouch>, with event: UIEvent?) {
 		guard state != .paused else { return }
 		
 		let touch = touches.first!
@@ -92,21 +124,35 @@ class GameScene: SKScene {
 		
 		if userBall.frame.contains(location) {
 			touchPoint = location
-			userBall.physicsBody?.isDynamic = true
-			userBall.physicsBody?.affectedByGravity = true
-			state = .touching
+			prepareBallForMoving()
 		}
 	}
 	
-	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-		let touch = touches.first!
-		let location = touch.location(in: self)
+	func touchesMovedFromMainView(_ touches: Set<UITouch>, with event: UIEvent?) {
+    guard let userBall = userBall else { return }
+    let touch = touches.first!
+    let location = touch.location(in: self)
+    
+    if state != .touching {
+      if userBall.frame.contains(location) {
+        prepareBallForMoving()
+      }
+    }
+  
 		touchPoint = location
 	}
 	
-	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+	func touchesEndedFromMainView(_ touches: Set<UITouch>, with event: UIEvent?) {
 		state = .roundInProgress
 	}
+  
+  func prepareBallForMoving() {
+    guard let userBall = userBall else { return }
+    
+    userBall.physicsBody?.isDynamic = true
+    userBall.physicsBody?.affectedByGravity = true
+    state = .touching
+  }
 	
 	//MARK: - Main game cycle
 	
@@ -119,6 +165,7 @@ class GameScene: SKScene {
 			let distance = CGVector(dx: touchPoint.x - userBall.position.x, dy: touchPoint.y - userBall.position.y)
 			let velocity = CGVector(dx: distance.dx / dt, dy: distance.dy / dt)
 			userBall.physicsBody!.velocity = velocity
+      
 		case .roundInProgress:
 			if userBall.position.y < 40 && userBall.physicsBody!.velocity.dy < 0 {
 				userBall.physicsBody!.velocity = CGVector(dx: 0.0, dy: 0.0)
@@ -127,6 +174,7 @@ class GameScene: SKScene {
 				let moveToInitPosition = SKAction.move(to: CGPoint(x: frame.width / 2, y: userBall.frame.height / 2), duration: 0.3)
 				userBall.run(moveToInitPosition)
 			}
+      
 		case .paused:
 			userBall.physicsBody!.velocity = CGVector(dx: 0.0, dy: 0.0)
 			let dissappear = SKAction.fadeAlpha(to: 0, duration: 0.2)

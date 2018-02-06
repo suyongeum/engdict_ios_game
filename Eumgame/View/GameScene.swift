@@ -10,7 +10,7 @@ class GameScene: SKScene {
 	enum State {
 		case paused, roundInProgress, touching
 	}
-	
+  private let obstacleWidth: CGFloat = 80
   private var userBall: SKShapeNode?
 	private var wordsBalls = [WordBallSprite]()
 	private var touchPoint: CGPoint = CGPoint()
@@ -46,9 +46,9 @@ class GameScene: SKScene {
     obstacles.removeAll()
     
     for index in 0..<3 {
-      let randomXPosition = 100 / 2 + CGFloat(arc4random_uniform(UInt32(frame.width - 100)))
+      let randomXPosition = obstacleWidth / 2 + CGFloat(arc4random_uniform(UInt32(frame.width - obstacleWidth)))
       let position = CGPoint(x: randomXPosition, y: frame.height / 2 - CGFloat(index * 50))
-      let obstacle = ObstacleSprite.init(size: CGSize(width: 100, height: 40))
+      let obstacle = ObstacleSprite.init(size: CGSize(width: obstacleWidth, height: 40))
       obstacle.position = position
       addChild(obstacle)
       obstacles.append(obstacle)
@@ -56,7 +56,7 @@ class GameScene: SKScene {
       let random = Int(arc4random_uniform(2))
       
       //to the left
-      let speed = (frame.width - 100) / 3
+      let speed = (frame.width - obstacleWidth) / 3
       let action: SKAction!
       let reversedAction: SKAction!
       let usualAction: SKAction!

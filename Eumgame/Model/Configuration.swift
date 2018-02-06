@@ -36,6 +36,7 @@ class Configuration: NSObject {
 	var userWordPosition = MutableProperty(0)
 	var userWords = [GuessingWord]()
 	var lineId = 0
+  var content: MutableProperty<[Content]> = MutableProperty([])
 		
 	var currentWords: Words? {
 		didSet {
@@ -61,7 +62,7 @@ class Configuration: NSObject {
 		userWordPosition.value = userWords[userWordIndex.value].position
 	}
 	
-	private func clearConfig() {
+	func clearConfig() {
 		totalWordsNumber.value = 0
 		userWords.removeAll()
 		wholeSentense.value = ""

@@ -9,6 +9,7 @@ struct PhysicsCategories {
 struct Network {
 	static let apiUrl = "http://www.uni-english.net:7777"
 	static let sentenceMethod = "/wordgaps"
+  static let content = "/content"
 	static let soundMethod = "/get_audio"
 }
 

@@ -4,12 +4,12 @@ import Result
 class GameViewModel {
 	var flowDelegate: FlowController?
 	var userWord = MutableProperty("")
-	var sentence = MutableProperty("")
+	var sentence = MutableProperty("-")
 	var userWordIndex = MutableProperty(0)
 	var totalWordsNumber = MutableProperty(0)
 	var userWordPosition = MutableProperty(0)
 	var points = MutableProperty(0)
-	var pointsString = MutableProperty("")
+	var pointsString = MutableProperty(UITextConst.score + ": -")
 	var contentId = 505
 	
 	init() {
@@ -65,4 +65,8 @@ class GameViewModel {
 	private func randomGuessingWordIndex() -> Int {
 		return Int(arc4random_uniform(UInt32(Configuration.shared.userWords.count)))
 	}
+  
+  func clearState() {
+    Configuration.shared.clearConfig()
+  }
 }

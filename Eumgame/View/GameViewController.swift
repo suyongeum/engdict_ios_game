@@ -14,12 +14,10 @@ class GameViewController: UIViewController {
 	private var player: AVPlayer?
 	private var mainScene: GameScene?
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
     
     wordLabel.text = UITextConst.word + ": -"
-    pointsLabel.text = UITextConst.score + ": -"
-    sentenceLabel.text = ""
     
     mainScene = GameScene(size: gameView.bounds.size)
     mainScene?.viewModel = viewModel
@@ -30,6 +28,7 @@ class GameViewController: UIViewController {
     mainScene.scaleMode = .resizeFill
     mainScene.gameManagerDelegate = self
     gameView.presentScene(mainScene)
+    makeBinding()
     
     do {
       try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
@@ -44,10 +43,26 @@ class GameViewController: UIViewController {
     } catch let error as NSError {
       print(error.localizedDescription)
     }
+    
+    let replayButton = UIBarButtonItem.init(barButtonSystemItem: .reply, target: self, action: #selector(playCurrentSound))
+    navigationItem.rightBarButtonItem = replayButton
+  }
+  
+  @objc func playCurrentSound() {
+    guard let viewModel = viewModel else { return }
+    playSound(fromUrl: "http://www.uni-english.net:7777/get_audio?content_id=" + String(viewModel.contentId) + "&line_id=" + String(Configuration.shared.lineId))
+  }
+  
+  func makeBinding() {
+    guard let viewModel = viewModel else { return }
+    
+    pointsLabel.reactive.text <~ viewModel.pointsString
+    sentenceLabel.reactive.text <~ viewModel.sentence
   }
   
   override func viewDidDisappear(_ animated: Bool) {
     player?.pause()
+    viewModel?.clearState()
     super.viewDidDisappear(animated)
   }
 
@@ -94,9 +109,7 @@ extension GameViewController: GameManagerDelegate {
 		guard let viewModel = viewModel else { return }
 		
 		wordLabel.text = UITextConst.word + ": " + viewModel.userWord.value
-		pointsLabel.reactive.text <~ viewModel.pointsString
-		sentenceLabel.text = viewModel.sentence.value
 		mainScene?.showBallsForSentence()
-		playSound(fromUrl: "http://www.uni-english.net:7777/get_audio?content_id=" + String(viewModel.contentId) + "&line_id=" + String(Configuration.shared.lineId))
+		playCurrentSound()
 	}
 }

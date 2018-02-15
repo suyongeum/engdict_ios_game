@@ -16,7 +16,7 @@ class GameViewController: UIViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    
+    view.backgroundColor = .white
     wordLabel.text = UITextConst.word + ": -"
     
     mainScene = GameScene(size: gameView.bounds.size)
@@ -25,7 +25,7 @@ class GameViewController: UIViewController {
     
     guard let mainScene = mainScene else { return }
     
-    mainScene.scaleMode = .resizeFill
+    mainScene.scaleMode = .aspectFit
     mainScene.gameManagerDelegate = self
     gameView.presentScene(mainScene)
     makeBinding()
@@ -48,9 +48,36 @@ class GameViewController: UIViewController {
     navigationItem.rightBarButtonItem = replayButton
   }
   
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    
+    if let scene = mainScene?.scene {
+      let newHeight = gameView.bounds.size.height / gameView.bounds.width * scene.size.width
+      let newWidth = gameView.bounds.size.width / gameView.bounds.height * scene.size.height
+      scene.anchorPoint.x = 0
+      scene.anchorPoint.y = 0
+      
+      if newWidth > scene.size.width {
+        scene.anchorPoint.x = (newWidth - scene.size.width) / 2.0 / newWidth
+        scene.size.width = newWidth
+      }
+      
+      if newHeight > scene.size.height {
+        scene.anchorPoint.y = (newHeight - scene.size.height) / 2.0 / newHeight
+        scene.size.height = newHeight
+      }
+    }
+    
+    mainScene?.setScene()
+  }
+  
   @objc func playCurrentSound() {
-    guard let viewModel = viewModel else { return }
-    playSound(fromUrl: "http://www.uni-english.net:7777/get_audio?content_id=" + String(viewModel.contentId) + "&line_id=" + String(Configuration.shared.lineId))
+    guard viewModel != nil else { return }
+    
+    player?.volume = 1.0
+    player?.rate = 1.0
+    player?.seek(to: kCMTimeZero)
+    player?.play()
   }
   
   func makeBinding() {
@@ -69,13 +96,6 @@ class GameViewController: UIViewController {
   override var prefersStatusBarHidden: Bool {
 		return false
   }
-	
-	private func playSound(fromUrl soundUrl: String) {
-		player = AVPlayer(url: URL(string: soundUrl)!)
-		player?.volume = 1.0
-		player?.rate = 1.0
-		player?.play()
-	}
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     mainScene?.touchesBeganFromMainView(touches, with: event)
@@ -110,6 +130,7 @@ extension GameViewController: GameManagerDelegate {
 		
 		wordLabel.text = UITextConst.word + ": " + viewModel.userWord.value
 		mainScene?.showBallsForSentence()
-		playCurrentSound()
+    player = AVPlayer(url: URL(string: viewModel.soundUrl)!)
+    playCurrentSound()
 	}
 }

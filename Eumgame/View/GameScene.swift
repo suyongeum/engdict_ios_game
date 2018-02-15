@@ -20,11 +20,14 @@ class GameScene: SKScene {
 	var gameManagerDelegate: GameManagerDelegate?
 	
   override func didMove(to view: SKView) {
-		physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
 		backgroundColor = SKColor.white
 		physicsWorld.contactDelegate = self
 		addUserBall()
 		gameManagerDelegate?.startNewRound()
+  }
+  
+  func setScene() {
+    physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
   }
 	
 	//MARK: - Elements creation
@@ -47,7 +50,7 @@ class GameScene: SKScene {
     
     for index in 0..<3 {
       let randomXPosition = obstacleWidth / 2 + CGFloat(arc4random_uniform(UInt32(frame.width - obstacleWidth)))
-      let position = CGPoint(x: randomXPosition, y: frame.height / 2 - CGFloat(index * 50))
+      let position = CGPoint(x: randomXPosition, y: frame.height / 2 - CGFloat(index * 50) + 50)
       let obstacle = ObstacleSprite.init(size: CGSize(width: obstacleWidth, height: 40))
       obstacle.position = position
       addChild(obstacle)

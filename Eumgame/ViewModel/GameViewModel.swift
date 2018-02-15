@@ -11,6 +11,9 @@ class GameViewModel {
 	var points = MutableProperty(0)
 	var pointsString = MutableProperty(UITextConst.score + ": -")
 	var contentId = 505
+  var soundUrl: String {
+    return "http://www.uni-english.net:7777/get_audio?content_id=" + String(contentId) + "&line_id=" + String(Configuration.shared.lineId)
+  }
 	
 	init() {
 		userWord <~ Configuration.shared.userWord

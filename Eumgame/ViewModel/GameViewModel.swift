@@ -2,6 +2,7 @@ import ReactiveSwift
 import Result
 
 class GameViewModel {
+  private let pointsUserDefaultsKey = "Points"
 	var flowDelegate: FlowController?
 	var userWord = MutableProperty("")
 	var sentence = MutableProperty("-")
@@ -21,8 +22,12 @@ class GameViewModel {
 		totalWordsNumber <~ Configuration.shared.totalWordsNumber
 		userWordIndex <~ Configuration.shared.userWordIndex
 		userWordPosition <~ Configuration.shared.userWordPosition
-		points.producer.startWithValues { [weak self] points in
+    points.value = UserDefaults.standard.integer(forKey: pointsUserDefaultsKey)
+    
+    points.producer.startWithValues { [weak self] points in
 			self?.pointsString.value = UITextConst.score + ": " + String(points)
+      guard let pointsUserDefaultsKey = self?.pointsUserDefaultsKey else { return }
+      UserDefaults.standard.set(points, forKey: pointsUserDefaultsKey)
 		}
 	}
 		

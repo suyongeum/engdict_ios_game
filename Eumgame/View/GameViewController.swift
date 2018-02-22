@@ -50,24 +50,9 @@ class GameViewController: UIViewController {
   
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
+    guard let scene = mainScene?.scene else { return }
     
-    if let scene = mainScene?.scene {
-      let newHeight = gameView.bounds.size.height / gameView.bounds.width * scene.size.width
-      let newWidth = gameView.bounds.size.width / gameView.bounds.height * scene.size.height
-      scene.anchorPoint.x = 0
-      scene.anchorPoint.y = 0
-      
-      if newWidth > scene.size.width {
-        scene.anchorPoint.x = (newWidth - scene.size.width) / 2.0 / newWidth
-        scene.size.width = newWidth
-      }
-      
-      if newHeight > scene.size.height {
-        scene.anchorPoint.y = (newHeight - scene.size.height) / 2.0 / newHeight
-        scene.size.height = newHeight
-      }
-    }
-    
+    scene.size = gameView.bounds.size
     mainScene?.setScene()
   }
   

@@ -214,6 +214,8 @@ extension GameScene: SKPhysicsContactDelegate {
 			state = .paused
 			viewModel.points.value += 1
 			gameManagerDelegate?.startNewRound()
-		}
+    } else if viewModel.points.value > 0 {
+      viewModel.points.value -= 1
+    }
 	}
 }
